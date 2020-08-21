@@ -1,8 +1,8 @@
 # DelayedPLIER
 
 ## Example
-```
-#We first create a toy example using an available large-scale scRNA-seq
+
+<b>#We first create a toy example using an available large-scale scRNA-seq</b>
 library(TENxPBMCData)
 sce <- TENxPBMCData("pbmc4k")
 mat <- counts(sce)
@@ -10,14 +10,14 @@ rownames(mat) <- rowData(sce)$ENSEMBL_ID
 colnames(mat) <- colData(sce)$Sequence
 writeHDF5Array(mat, filepath = "counts.hdf5", name = "count")
 saveRDS(list(row.names = rowData(sce)$ENSEMBL_ID , col.names = colData(sce)$Sequence), file = "dimnames.RDS")
-#In the latest version of HDF5Array, dimension names can be written in to the hdf5 file directly
-#writeHDF5Array(mat, filepath = "counts.hdf5", name = "count", with.dimnames=T)
+<b>#In the latest version of HDF5Array, dimension names can be written in to the hdf5 file directly </b>
+<b>#writeHDF5Array(mat, filepath = "counts.hdf5", name = "count", with.dimnames=T) </b>
 
-#Load all functions in funcs.R
+<b>Load all functions in funcs.R</b>
 source("funcs.R") #glmnet and HDF5Array will be loaded 
 setRealizationBackend("HDF5Array") #supportedRealizationBackends(), getRealizationBackend()
 
-#read in the file we just created. The name can be verified via h5ls("counts.hdf5")
+<b>read in the file we just created. The name can be verified via h5ls("counts.hdf5") </b>
 sce <- DelayedArray(seed = HDF5ArraySeed(filepath = "counts.hdf5", name = "count"))
 
 
@@ -41,7 +41,7 @@ priorMat <- readRDS("canonicalPathways_ENSG.RDS")
 ptm <- proc.time()
 PLIER.res <- PLIER(data, priorMat, output_path = "output/")
 print(proc.time()-ptm)
-```
+
 
 
 ## Tutorial
