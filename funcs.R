@@ -173,24 +173,26 @@ solveU=function(Z,  Chat, priorMat, penalty.factor,pathwaySelection="fast", glm_
 
 
 ############################################################################
-copyMat=function(mat, zero=F){
-  if (class(mat)=="matrix"){
-    matnew=matrix(nrow=nrow(mat), ncol=ncol(mat))
-    rownames(matnew)=rownames(mat)
-    colnames(matnew)=colnames(mat)
-    if(zero)
-      matnew[]=0
-    matnew
+copyMat <- function(mat, zero=FALSE){
+  if (inherits(mat, "matrix")){
+    matnew <- matrix(nrow=nrow(mat), ncol=ncol(mat))
+    rownames(matnew) <- rownames(mat)
+    colnames(matnew) <- colnames(mat)
+    if(zero) {
+      matnew[] <- 0
+    }
+    return(matnew)
     
-  }else if (class(mat)=="DelayedMatrix"){
+  } else if (inherits(mat, "DelayedMatrix")){
     matnew <- mat
     if (zero){
       matnew[] <- 0
-    }else{
+    } else {
       matnew[] <- NA
-    }#else
+    }
     return(matnew)
-  }#else if
+  }
+  stop("The input is neither a matrix nor a DelayedMatrix.")
 }#copyMat
 
 
