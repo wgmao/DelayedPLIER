@@ -17,7 +17,7 @@ In the latest version of HDF5Array, dimension names can be written in to the hdf
 Load all functions in funcs.R
 ```
 source("funcs.R") #glmnet and HDF5Array will be loaded 
-setRealizationBackend("HDF5Array") #supportedRealizationBackends(), getRealizationBackend()
+setAutoRealizationBackend("HDF5Array") #supportedRealizationBackends(), getRealizationBackend()
 ```
 
 Read in the file we just created. The name can be verified via `h5ls("counts.hdf5")`
